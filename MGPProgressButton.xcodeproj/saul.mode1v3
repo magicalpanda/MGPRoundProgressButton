@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>C7EB09F412D1551A00923A82</string>
+										<string>C7EB0A9612D15D6D00923A82</string>
 										<key>history</key>
 										<array>
 											<string>C777CF7B1209DFFD00D109CB</string>
@@ -337,10 +337,10 @@
 											<string>C7FA0A9B126BD641008E596C</string>
 											<string>C7C65E9B12CD59C9009E3961</string>
 											<string>C7C65FF512CDA2B6009E3961</string>
-											<string>C7EB082A12D134ED00923A82</string>
 											<string>C7EB089812D13CEC00923A82</string>
 											<string>C7EB089912D13CEC00923A82</string>
-											<string>C7EB089A12D13CEC00923A82</string>
+											<string>C7EB0A4612D15BBC00923A82</string>
+											<string>C7EB0A4712D15BBC00923A82</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -538,7 +538,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>C7EB09F312D1551300923A82</string>
+		<string>C7EB0A9712D15D6D00923A82</string>
 		<string>C7CCA72D1267A5A7005B6743</string>
 		<string>C7EB07E012D12CA400923A82</string>
 		<string>C7EB07D812D12C3D00923A82</string>
@@ -721,10 +721,10 @@
 									<key>Frame</key>
 									<string>{{600, 0}, {723, 280}}</string>
 									<key>RubberWindowFrame</key>
-									<string>357 60 1323 968 0 0 1680 1028 </string>
+									<string>463 60 1323 968 0 0 1680 1028 </string>
 								</dict>
 								<key>RubberWindowFrame</key>
-								<string>357 60 1323 968 0 0 1680 1028 </string>
+								<string>463 60 1323 968 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -758,7 +758,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
 			<key>WindowString</key>
-			<string>357 60 1323 968 0 0 1680 1028 </string>
+			<string>463 60 1323 968 0 0 1680 1028 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>

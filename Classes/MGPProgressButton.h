@@ -25,7 +25,7 @@ typedef enum {
     CAShapeLayer *playPauseButtonRing_;
     
     CGFloat progress_;
-    CGFloat strokeWidth_;
+//    CGFloat strokeWidth_;
     ProgressButtonState currentState_;
 
     NSUInteger spinCount_;

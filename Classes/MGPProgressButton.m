@@ -11,12 +11,19 @@
 #import <QuartzCore/QuartzCore.h>
 
 //TODO: Make this calculations based on the framesize
-#define kProgressRingPadding 10
-#define kProgressPathStroke 3
-#define kBackgroundRingStroke 1.7
-#define kPlayControlRingStroke 1.5
+#define kBackgroundGroupPadding 6.
 
-static CGFloat kPlayButtonPadding = 20.;
+#define kProgressPathStroke 4.8
+#define kProgressRingPadding 10.5
+
+#define kBackgroundRingStroke .7
+#define kBackgroundRingPadding 7.5
+
+#define kPlayControlRingPadding 8.
+#define kPlayControlRingStroke 1.8
+#define kPlayButtonPadding 18.5
+
+#define kProgressRingSpinTimeInterval 1.
 
 
 CGFloat degreesToRadians(CGFloat degrees) 
@@ -153,12 +160,12 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     background_ = [[CAShapeLayer layer] retain];
     background_.opacity = .25;
     background_.fillColor = [UIColor blackColor].CGColor;
-    background_.path = circlePath(self.bounds, 5);
+    background_.path = circlePath(self.bounds, kBackgroundGroupPadding);
     [backgroundGroup_ addSublayer:background_];
 
     backgroundRing_ = [[CAShapeLayer layer] retain];
     backgroundRing_.frame = self.bounds;
-    backgroundRing_.path = circlePath(self.bounds, 8);
+    backgroundRing_.path = circlePath(self.bounds, kBackgroundRingPadding);
     backgroundRing_.fillColor = nil;
     backgroundRing_.lineWidth = kBackgroundRingStroke;
     backgroundRing_.strokeColor = [UIColor whiteColor].CGColor;
@@ -177,7 +184,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     playPauseButtonRing_ = [[CAShapeLayer layer] retain];
     playPauseButtonRing_.frame = self.bounds;
     playPauseButtonRing_.masksToBounds = YES;
-    playPauseButtonRing_.path = circlePath(self.bounds, 10);
+    playPauseButtonRing_.path = circlePath(self.bounds, kPlayControlRingPadding);
     playPauseButtonRing_.fillColor = nil;
     playPauseButtonRing_.strokeColor = [UIColor whiteColor].CGColor;
     playPauseButtonRing_.lineWidth = kPlayControlRingStroke;
@@ -186,7 +193,6 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     mainLayer.backgroundColor = [UIColor clearColor].CGColor;
     
     progress_ = 0;
-    strokeWidth_ = 10.;
     self.buttonState = ProgressButtonStatePaused;
     
     [self addTarget:self action:@selector(beginLoading) forControlEvents:UIControlEventTouchUpInside];    
@@ -274,7 +280,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     rotate.fromValue = [NSValue valueWithCATransform3D:startRotation];
     rotate.toValue = [NSValue valueWithCATransform3D:endRotation];
     rotate.delegate = self;
-    rotate.duration = 1.;
+    rotate.duration = kProgressRingSpinTimeInterval / 2;
     
     [self.progressRing addAnimation:rotate forKey:@"firstHalf"];    
 }
@@ -289,7 +295,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     
     rotate.fromValue = [NSValue valueWithCATransform3D:startRotation];
     rotate.toValue = [NSValue valueWithCATransform3D:endRotation];
-    rotate.duration = 1.;
+    rotate.duration = kProgressRingSpinTimeInterval / 2;
     rotate.delegate = self;
     
     [self.progressRing addAnimation:rotate forKey:@"secondHalf"];
@@ -307,11 +313,10 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     if (self.buttonState == ProgressButtonStatePaused) 
     {
         [self setButtonState:ProgressButtonStateRotating];
-        self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, .3);
     }
-    else if (self.buttonState == ProgressButtonStatePlaying)
+    else if (self.buttonState == ProgressButtonStatePlaying || self.buttonState == ProgressButtonStateRotating)
     {
-        [self setButtonState:ProgressButtonStatePaused];
+        self.buttonState = ProgressButtonStatePaused;
     }
 
     if (self.progress == 0 || self.buttonState == ProgressButtonStateRotating) 
@@ -323,7 +328,6 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 - (void) playbackStarted
 {
     [self.progressRing removeAllAnimations];
-    spinCount_ = 0;
     currentState_ = ProgressButtonStatePlaying;
     
     self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, 0);
