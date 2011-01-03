@@ -58,7 +58,7 @@
 					<object class="IBUIView" id="281214970">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">1298</int>
-						<string key="NSFrame">{{60, 85}, {200, 200}}</string>
+						<string key="NSFrame">{{130, 140}, {60, 60}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -77,14 +77,14 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSFont" key="IBUIFont" id="391666043">
+						<object class="NSFont" key="IBUIFont" id="1008406486">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Start Progress</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="189726601">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="1060398714">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -92,12 +92,12 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="279268857">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="941501450">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
 					</object>
-					<object class="IBUIButton" id="41767341">
+					<object class="IBUIButton" id="196097629">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">1316</int>
 						<string key="NSFrame">{{17, 351}, {78, 37}}</string>
@@ -107,17 +107,17 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="391666043"/>
+						<reference key="IBUIFont" ref="1008406486"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Playing</string>
-						<reference key="IBUIHighlightedTitleColor" ref="189726601"/>
+						<reference key="IBUIHighlightedTitleColor" ref="1060398714"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="279268857"/>
+						<reference key="IBUINormalTitleShadowColor" ref="941501450"/>
 					</object>
-					<object class="IBUIButton" id="300301813">
+					<object class="IBUIButton" id="853352326">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">1316</int>
 						<string key="NSFrame">{{121, 351}, {78, 37}}</string>
@@ -127,17 +127,17 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="391666043"/>
+						<reference key="IBUIFont" ref="1008406486"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Paused</string>
-						<reference key="IBUIHighlightedTitleColor" ref="189726601"/>
+						<reference key="IBUIHighlightedTitleColor" ref="1060398714"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="279268857"/>
+						<reference key="IBUINormalTitleShadowColor" ref="941501450"/>
 					</object>
-					<object class="IBUIButton" id="446907218">
+					<object class="IBUIButton" id="406673203">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">1316</int>
 						<string key="NSFrame">{{215, 351}, {85, 37}}</string>
@@ -147,15 +147,15 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="391666043"/>
+						<reference key="IBUIFont" ref="1008406486"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Rotating</string>
-						<reference key="IBUIHighlightedTitleColor" ref="189726601"/>
+						<reference key="IBUIHighlightedTitleColor" ref="1060398714"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="279268857"/>
+						<reference key="IBUINormalTitleShadowColor" ref="941501450"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -204,7 +204,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">pauseState</string>
-						<reference key="source" ref="300301813"/>
+						<reference key="source" ref="853352326"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -213,7 +213,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">playingState</string>
-						<reference key="source" ref="41767341"/>
+						<reference key="source" ref="196097629"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -222,7 +222,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">rotatingState</string>
-						<reference key="source" ref="446907218"/>
+						<reference key="source" ref="406673203"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -254,12 +254,12 @@
 						<reference key="object" ref="774585933"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="281214970"/>
 							<reference ref="86318694"/>
-							<reference ref="41767341"/>
-							<reference ref="446907218"/>
-							<reference ref="300301813"/>
+							<reference ref="196097629"/>
+							<reference ref="406673203"/>
+							<reference ref="853352326"/>
 							<reference ref="395132695"/>
+							<reference ref="281214970"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -280,17 +280,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
-						<reference key="object" ref="41767341"/>
+						<reference key="object" ref="196097629"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="300301813"/>
+						<reference key="object" ref="853352326"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="446907218"/>
+						<reference key="object" ref="406673203"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 				</object>
@@ -342,7 +342,7 @@
 					<string>MGPProgressButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABC6gAAwwEAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABC8gAAw0UAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
