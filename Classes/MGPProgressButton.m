@@ -109,7 +109,6 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 @synthesize progressMaximum = progressMaximum_;
 @synthesize progress = progress_;
 @synthesize progressColor = progressColor_;
-//@synthesize isPlaying = playMode_;
 @synthesize progressRing = progressRing_;
 @synthesize buttonState = currentState_;
 
@@ -178,8 +177,6 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     [mainLayer addSublayer:playPauseButtonRing_];
 
     mainLayer.backgroundColor = [UIColor clearColor].CGColor;
-//    mainLayer.borderColor = [UIColor redColor].CGColor;
-//    mainLayer.borderWidth = 2.0;
     
     progress_ = 0;
     strokeWidth_ = 10.;
@@ -327,7 +324,6 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 }
 
 - (void) setButtonState:(ProgressButtonState)mode
-//- (void) setIsPlaying:(BOOL)mode
 {
     if (mode == self.buttonState) return;
     

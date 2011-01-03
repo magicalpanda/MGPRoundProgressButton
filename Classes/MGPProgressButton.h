@@ -34,12 +34,10 @@ typedef enum {
 @property (nonatomic, retain) NSNumber *progressMaximum;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, retain) UIColor *progressColor;
-//@property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, assign) ProgressButtonState buttonState;
 @property (nonatomic, readonly) CAShapeLayer *progressRing;
 
 - (IBAction) beginLoading;
 - (IBAction) resetProgress;
-//- (void) setIsPlaying:(BOOL)playing animated:(BOOL)animated;
 
 @end
