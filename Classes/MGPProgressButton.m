@@ -10,7 +10,13 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-static CGFloat kPlayButtonPadding = 60.;
+#define kProgressRingPadding 10
+#define kProgressPathStroke 3
+#define kBackgroundRingStroke 1.7
+#define kPlayControlRingStroke 1.5
+
+static CGFloat kPlayButtonPadding = 20.;
+
 
 CGFloat degreesToRadians(CGFloat degrees) 
 {   
@@ -154,7 +160,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     backgroundRing_.frame = self.bounds;
     backgroundRing_.path = circlePath(self.bounds, 8);
     backgroundRing_.fillColor = nil;
-    backgroundRing_.lineWidth = 3.5;
+    backgroundRing_.lineWidth = kBackgroundRingStroke;
     backgroundRing_.strokeColor = [UIColor whiteColor].CGColor;
     [backgroundGroup_ addSublayer:backgroundRing_];
     
@@ -174,7 +180,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     playPauseButtonRing_.path = circlePath(self.bounds, 10);
     playPauseButtonRing_.fillColor = nil;
     playPauseButtonRing_.strokeColor = [UIColor whiteColor].CGColor;
-    playPauseButtonRing_.lineWidth = 5.;
+    playPauseButtonRing_.lineWidth = kPlayControlRingStroke;
     [mainLayer addSublayer:playPauseButtonRing_];
 
     mainLayer.backgroundColor = [UIColor clearColor].CGColor;
@@ -223,7 +229,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
         {
             self.buttonState = ProgressButtonStatePlaying;
             progress_ = progress;
-            self.progressRing.path = progressPath(self.bounds, 19, progress_ / [self.progressMaximum doubleValue]);
+            self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, progress_ / [self.progressMaximum doubleValue]);
             [self.progressRing setNeedsDisplay];
         }
         else //reached mac progress
@@ -248,7 +254,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
         progressRing_.frame = backgroundGroup_.bounds;
         progressRing_.fillColor = nil;
         progressRing_.strokeColor = self.progressColor.CGColor;
-        progressRing_.lineWidth = 12.;
+        progressRing_.lineWidth = kProgressPathStroke;
         [backgroundGroup_ addSublayer:progressRing_];
     }
     return progressRing_;
@@ -303,7 +309,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     if (self.buttonState == ProgressButtonStatePaused) 
     {
         [self setButtonState:ProgressButtonStateRotating];
-        self.progressRing.path = progressPath(self.bounds, 19, .3);
+        self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, .3);
     }
     else if (self.buttonState == ProgressButtonStatePlaying)
     {
@@ -322,7 +328,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     spinCount_ = 0;
     currentState_ = ProgressButtonStatePlaying;
     
-    self.progressRing.path = progressPath(self.bounds, 19, 0);
+    self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, 0);
     self.progressRing.transform = CATransform3DIdentity;
 }
 
@@ -366,7 +372,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     if (mode == ProgressButtonStateRotating && self.progress == 0)  
     {
         spinCount_ = 0;
-        self.progressRing.path = progressPath(self.bounds, 19, .3);
+        self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, .3);
         [self rotateFirstHalf];
     }
     else 
