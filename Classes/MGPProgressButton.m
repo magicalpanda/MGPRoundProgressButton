@@ -21,7 +21,7 @@
 
 #define kPlayControlRingPadding 8.
 #define kPlayControlRingStroke 1.8
-#define kPlayButtonPadding 18.5
+#define kPlayButtonPadding 17.5
 
 #define kProgressRingSpinTimeInterval 1.
 
