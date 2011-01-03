@@ -36,8 +36,8 @@
 			1D6058900D05DD3D006BFB54 /* MGPProgressButton */,
 		);
 		breakpoints = (
-			C7C65D5312CD40F8009E3961 /* MGPProgressButton.m:250 */,
-			C7EB086612D137C300923A82 /* MGPProgressButton.m:346 */,
+			C7C65D5312CD40F8009E3961 /* MGPProgressButton.m:254 */,
+			C7EB086612D137C300923A82 /* MGPProgressButton.m:348 */,
 		);
 		codeSenseManager = C777CF751209B45900D109CB /* Code sense */;
 		executables = (
@@ -191,6 +191,33 @@
 			C7EB09ED12D154DC00923A82 /* PBXTextBookmark */ = C7EB09ED12D154DC00923A82 /* PBXTextBookmark */;
 			C7EB09F212D1551300923A82 /* PBXTextBookmark */ = C7EB09F212D1551300923A82 /* PBXTextBookmark */;
 			C7EB09F412D1551A00923A82 /* PBXTextBookmark */ = C7EB09F412D1551A00923A82 /* PBXTextBookmark */;
+			C7EB0A0012D1579C00923A82 /* PBXTextBookmark */ = C7EB0A0012D1579C00923A82 /* PBXTextBookmark */;
+			C7EB0A0612D157BC00923A82 /* PBXTextBookmark */ = C7EB0A0612D157BC00923A82 /* PBXTextBookmark */;
+			C7EB0A0C12D157C300923A82 /* PBXTextBookmark */ = C7EB0A0C12D157C300923A82 /* PBXTextBookmark */;
+			C7EB0A1412D157CD00923A82 /* PBXTextBookmark */ = C7EB0A1412D157CD00923A82 /* PBXTextBookmark */;
+			C7EB0A1A12D157E800923A82 /* PBXTextBookmark */ = C7EB0A1A12D157E800923A82 /* PBXTextBookmark */;
+			C7EB0A1C12D157EE00923A82 /* PBXTextBookmark */ = C7EB0A1C12D157EE00923A82 /* PBXTextBookmark */;
+			C7EB0A2112D1580300923A82 /* PBXTextBookmark */ = C7EB0A2112D1580300923A82 /* PBXTextBookmark */;
+			C7EB0A2712D1592E00923A82 /* PBXTextBookmark */ = C7EB0A2712D1592E00923A82 /* PBXTextBookmark */;
+			C7EB0A2D12D1594100923A82 /* PBXTextBookmark */ = C7EB0A2D12D1594100923A82 /* PBXTextBookmark */;
+			C7EB0A3312D1595000923A82 /* PBXTextBookmark */ = C7EB0A3312D1595000923A82 /* PBXTextBookmark */;
+			C7EB0A3512D15A2000923A82 /* PBXTextBookmark */ = C7EB0A3512D15A2000923A82 /* PBXTextBookmark */;
+			C7EB0A4612D15BBC00923A82 /* PBXTextBookmark */ = C7EB0A4612D15BBC00923A82 /* PBXTextBookmark */;
+			C7EB0A4712D15BBC00923A82 /* PBXTextBookmark */ = C7EB0A4712D15BBC00923A82 /* PBXTextBookmark */;
+			C7EB0A4812D15BBC00923A82 /* PBXTextBookmark */ = C7EB0A4812D15BBC00923A82 /* PBXTextBookmark */;
+			C7EB0A4E12D15BC400923A82 /* PBXTextBookmark */ = C7EB0A4E12D15BC400923A82 /* PBXTextBookmark */;
+			C7EB0A5412D15BDB00923A82 /* PBXTextBookmark */ = C7EB0A5412D15BDB00923A82 /* PBXTextBookmark */;
+			C7EB0A5A12D15BE900923A82 /* PBXTextBookmark */ = C7EB0A5A12D15BE900923A82 /* PBXTextBookmark */;
+			C7EB0A6212D15BF700923A82 /* PBXTextBookmark */ = C7EB0A6212D15BF700923A82 /* PBXTextBookmark */;
+			C7EB0A6812D15C1100923A82 /* PBXTextBookmark */ = C7EB0A6812D15C1100923A82 /* PBXTextBookmark */;
+			C7EB0A6E12D15C3300923A82 /* PBXTextBookmark */ = C7EB0A6E12D15C3300923A82 /* PBXTextBookmark */;
+			C7EB0A7412D15C4400923A82 /* PBXTextBookmark */ = C7EB0A7412D15C4400923A82 /* PBXTextBookmark */;
+			C7EB0A7A12D15C4F00923A82 /* PBXTextBookmark */ = C7EB0A7A12D15C4F00923A82 /* PBXTextBookmark */;
+			C7EB0A8012D15C5B00923A82 /* PBXTextBookmark */ = C7EB0A8012D15C5B00923A82 /* PBXTextBookmark */;
+			C7EB0A8612D15C7800923A82 /* PBXTextBookmark */ = C7EB0A8612D15C7800923A82 /* PBXTextBookmark */;
+			C7EB0A8C12D15C8B00923A82 /* PBXTextBookmark */ = C7EB0A8C12D15C8B00923A82 /* PBXTextBookmark */;
+			C7EB0A9212D15CDA00923A82 /* PBXTextBookmark */ = C7EB0A9212D15CDA00923A82 /* PBXTextBookmark */;
+			C7EB0A9612D15D6D00923A82 /* PBXTextBookmark */ = C7EB0A9612D15D6D00923A82 /* PBXTextBookmark */;
 			C7F6873A125423660033AC9F = C7F6873A125423660033AC9F /* PBXTextBookmark */;
 			C7FA0A9B126BD641008E596C = C7FA0A9B126BD641008E596C /* PBXBookmark */;
 		};
@@ -247,15 +274,15 @@
 	C777CF771209B49500D109CB /* MGPProgressButton.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1096, 883}}";
-			sepNavSelRange = "{903, 0}";
-			sepNavVisRange = "{0, 1197}";
+			sepNavSelRange = "{648, 0}";
+			sepNavVisRange = "{0, 1199}";
 		};
 	};
 	C777CF781209B49500D109CB /* MGPProgressButton.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1096, 6384}}";
-			sepNavSelRange = "{7791, 0}";
-			sepNavVisRange = "{6176, 1509}";
+			sepNavIntBoundsRect = "{{0, 0}, {1096, 6224}}";
+			sepNavSelRange = "{10459, 0}";
+			sepNavVisRange = "{9696, 1866}";
 		};
 	};
 	C777CF7B1209DFFD00D109CB /* PBXTextBookmark */ = {
@@ -295,7 +322,7 @@
 		vrLen = 433;
 		vrLoc = 0;
 	};
-	C7C65D5312CD40F8009E3961 /* MGPProgressButton.m:250 */ = {
+	C7C65D5312CD40F8009E3961 /* MGPProgressButton.m:254 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -307,9 +334,9 @@
 		functionName = "-progressRing";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 250;
+		lineNumber = 254;
 		location = MGPProgressButton;
-		modificationTime = 315708692.881707;
+		modificationTime = 315710683.682581;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -352,7 +379,7 @@
 		fRef = C777CF771209B49500D109CB /* MGPProgressButton.h */;
 		name = "MGPProgressButton.h: 31";
 		rLen = 0;
-		rLoc = 737;
+		rLoc = 739;
 		rType = 0;
 		vrLen = 1047;
 		vrLoc = 0;
@@ -362,7 +389,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 295";
 		rLen = 0;
-		rLoc = 9724;
+		rLoc = 9876;
 		rType = 0;
 		vrLen = 1816;
 		vrLoc = 8349;
@@ -372,7 +399,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 308";
 		rLen = 0;
-		rLoc = 10186;
+		rLoc = 10300;
 		rType = 0;
 		vrLen = 1817;
 		vrLoc = 8436;
@@ -382,7 +409,7 @@
 		fRef = C777CF771209B49500D109CB /* MGPProgressButton.h */;
 		name = "MGPProgressButton.h: 34";
 		rLen = 0;
-		rLoc = 770;
+		rLoc = 772;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 0;
@@ -392,7 +419,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 308";
 		rLen = 0;
-		rLoc = 10186;
+		rLoc = 10300;
 		rType = 0;
 		vrLen = 1587;
 		vrLoc = 5450;
@@ -402,7 +429,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 223";
 		rLen = 0;
-		rLoc = 7346;
+		rLoc = 7436;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 6653;
@@ -412,7 +439,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 188";
 		rLen = 0;
-		rLoc = 6600;
+		rLoc = 6690;
 		rType = 0;
 		vrLen = 2049;
 		vrLoc = 4032;
@@ -422,7 +449,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 329";
 		rLen = 0;
-		rLoc = 10603;
+		rLoc = 10697;
 		rType = 0;
 		vrLen = 1874;
 		vrLoc = 9050;
@@ -432,7 +459,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 26";
 		rLen = 0;
-		rLoc = 780;
+		rLoc = 923;
 		rType = 0;
 		vrLen = 1879;
 		vrLoc = 3;
@@ -442,7 +469,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 27";
 		rLen = 0;
-		rLoc = 908;
+		rLoc = 1051;
 		rType = 0;
 		vrLen = 1877;
 		vrLoc = 3;
@@ -452,7 +479,7 @@
 		fRef = C777CF771209B49500D109CB /* MGPProgressButton.h */;
 		name = "MGPProgressButton.h: 41";
 		rLen = 0;
-		rLoc = 1111;
+		rLoc = 1113;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 0;
@@ -462,7 +489,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 287";
 		rLen = 0;
-		rLoc = 8391;
+		rLoc = 8481;
 		rType = 0;
 		vrLen = 1973;
 		vrLoc = 8691;
@@ -472,7 +499,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 264";
 		rLen = 0;
-		rLoc = 8319;
+		rLoc = 8409;
 		rType = 0;
 		vrLen = 2175;
 		vrLoc = 7856;
@@ -492,7 +519,7 @@
 		fRef = C777CF771209B49500D109CB /* MGPProgressButton.h */;
 		name = "MGPProgressButton.h: 41";
 		rLen = 0;
-		rLoc = 1111;
+		rLoc = 1113;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 0;
@@ -502,7 +529,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 264";
 		rLen = 0;
-		rLoc = 8319;
+		rLoc = 8409;
 		rType = 0;
 		vrLen = 2149;
 		vrLoc = 7856;
@@ -512,7 +539,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 325";
 		rLen = 0;
-		rLoc = 9727;
+		rLoc = 9879;
 		rType = 0;
 		vrLen = 1779;
 		vrLoc = 9445;
@@ -522,7 +549,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 330";
 		rLen = 0;
-		rLoc = 10100;
+		rLoc = 10214;
 		rType = 0;
 		vrLen = 1779;
 		vrLoc = 9445;
@@ -532,7 +559,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 330";
 		rLen = 0;
-		rLoc = 10100;
+		rLoc = 10214;
 		rType = 0;
 		vrLen = 1950;
 		vrLoc = 9107;
@@ -542,7 +569,7 @@
 		fRef = C777CF771209B49500D109CB /* MGPProgressButton.h */;
 		name = "MGPProgressButton.h: 37";
 		rLen = 0;
-		rLoc = 903;
+		rLoc = 905;
 		rType = 0;
 		vrLen = 1197;
 		vrLoc = 0;
@@ -552,7 +579,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 114";
 		rLen = 0;
-		rLoc = 3917;
+		rLoc = 4060;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 8568;
@@ -562,7 +589,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7797;
+		rLoc = 7887;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 6602;
@@ -572,7 +599,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 337";
 		rLen = 0;
-		rLoc = 11108;
+		rLoc = 11202;
 		rType = 0;
 		vrLen = 1907;
 		vrLoc = 9737;
@@ -582,7 +609,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 332";
 		rLen = 0;
-		rLoc = 10740;
+		rLoc = 10834;
 		rType = 0;
 		vrLen = 1850;
 		vrLoc = 9681;
@@ -592,7 +619,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 332";
 		rLen = 0;
-		rLoc = 10740;
+		rLoc = 10834;
 		rType = 0;
 		vrLen = 1573;
 		vrLoc = 9069;
@@ -602,7 +629,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 332";
 		rLen = 0;
-		rLoc = 10740;
+		rLoc = 10834;
 		rType = 0;
 		vrLen = 1573;
 		vrLoc = 9069;
@@ -612,7 +639,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1919;
 		vrLoc = 9264;
@@ -622,7 +649,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1919;
 		vrLoc = 9264;
@@ -632,7 +659,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1919;
 		vrLoc = 9264;
@@ -642,7 +669,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1919;
 		vrLoc = 9264;
@@ -652,7 +679,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1919;
 		vrLoc = 9264;
@@ -662,12 +689,12 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1918;
 		vrLoc = 9264;
 	};
-	C7EB086612D137C300923A82 /* MGPProgressButton.m:346 */ = {
+	C7EB086612D137C300923A82 /* MGPProgressButton.m:348 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -679,9 +706,9 @@
 		functionName = "-setButtonState:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 346;
+		lineNumber = 348;
 		location = MGPProgressButton;
-		modificationTime = 315708692.882095;
+		modificationTime = 315710683.683012;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -690,7 +717,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1918;
 		vrLoc = 9264;
@@ -700,7 +727,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1945;
 		vrLoc = 9264;
@@ -710,7 +737,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 2069;
 		vrLoc = 9264;
@@ -720,7 +747,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 2069;
 		vrLoc = 9264;
@@ -730,7 +757,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 2069;
 		vrLoc = 9264;
@@ -740,7 +767,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 2069;
 		vrLoc = 9264;
@@ -750,7 +777,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 2069;
 		vrLoc = 9264;
@@ -760,7 +787,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1932;
 		vrLoc = 9264;
@@ -770,7 +797,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 312";
 		rLen = 0;
-		rLoc = 10178;
+		rLoc = 10292;
 		rType = 0;
 		vrLen = 1932;
 		vrLoc = 9264;
@@ -780,7 +807,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 221";
 		rLen = 0;
-		rLoc = 7183;
+		rLoc = 7273;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 6479;
@@ -790,7 +817,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 221";
 		rLen = 0;
-		rLoc = 7183;
+		rLoc = 7273;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 6479;
@@ -850,7 +877,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 221";
 		rLen = 0;
-		rLoc = 7183;
+		rLoc = 7273;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 6479;
@@ -860,7 +887,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 6517;
@@ -870,7 +897,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -880,7 +907,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -890,7 +917,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -900,7 +927,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -910,7 +937,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -920,7 +947,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -930,7 +957,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -940,7 +967,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -950,7 +977,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -960,7 +987,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -970,7 +997,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -980,7 +1007,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -990,7 +1017,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 6519;
@@ -1000,7 +1027,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1010,7 +1037,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1020,7 +1047,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1030,7 +1057,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1040,7 +1067,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1050,7 +1077,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1060,7 +1087,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1070,7 +1097,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1080,7 +1107,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1090,7 +1117,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1100,7 +1127,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 238";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 6320;
@@ -1110,7 +1137,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 244";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 6174;
@@ -1120,7 +1147,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 244";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 6176;
@@ -1130,7 +1157,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 244";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 6176;
@@ -1140,7 +1167,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 244";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 6176;
@@ -1150,7 +1177,7 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 244";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 6176;
@@ -1160,10 +1187,280 @@
 		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
 		name = "MGPProgressButton.m: 244";
 		rLen = 0;
-		rLoc = 7791;
+		rLoc = 7881;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 6176;
+	};
+	C7EB0A0012D1579C00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1734;
+		vrLoc = 0;
+	};
+	C7EB0A0612D157BC00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1734;
+		vrLoc = 0;
+	};
+	C7EB0A0C12D157C300923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1734;
+		vrLoc = 0;
+	};
+	C7EB0A1412D157CD00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1692;
+		vrLoc = 0;
+	};
+	C7EB0A1A12D157E800923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1703;
+		vrLoc = 0;
+	};
+	C7EB0A1C12D157EE00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1735;
+		vrLoc = 0;
+	};
+	C7EB0A2112D1580300923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1735;
+		vrLoc = 0;
+	};
+	C7EB0A2712D1592E00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1735;
+		vrLoc = 0;
+	};
+	C7EB0A2D12D1594100923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1735;
+		vrLoc = 0;
+	};
+	C7EB0A3312D1595000923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1736;
+		vrLoc = 0;
+	};
+	C7EB0A3512D15A2000923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 16";
+		rLen = 0;
+		rLoc = 477;
+		rType = 0;
+		vrLen = 1728;
+		vrLoc = 0;
+	};
+	C7EB0A4612D15BBC00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF771209B49500D109CB /* MGPProgressButton.h */;
+		name = "MGPProgressButton.h: 28";
+		rLen = 0;
+		rLoc = 648;
+		rType = 0;
+		vrLen = 1199;
+		vrLoc = 0;
+	};
+	C7EB0A4712D15BBC00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 158";
+		rLen = 0;
+		rLoc = 5131;
+		rType = 0;
+		vrLen = 2181;
+		vrLoc = 4776;
+	};
+	C7EB0A4812D15BBC00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A4E12D15BC400923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A5412D15BDB00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A5A12D15BE900923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A6212D15BF700923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8606;
+	};
+	C7EB0A6812D15C1100923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A6E12D15C3300923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A7412D15C4400923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A7A12D15C4F00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8604;
+	};
+	C7EB0A8012D15C5B00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8604;
+	};
+	C7EB0A8612D15C7800923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A8C12D15C8B00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 330";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 1890;
+		vrLoc = 8605;
+	};
+	C7EB0A9212D15CDA00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 331";
+		rLen = 0;
+		rLoc = 10506;
+		rType = 0;
+		vrLen = 2021;
+		vrLoc = 8572;
+	};
+	C7EB0A9612D15D6D00923A82 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C777CF781209B49500D109CB /* MGPProgressButton.m */;
+		name = "MGPProgressButton.m: 328";
+		rLen = 0;
+		rLoc = 10459;
+		rType = 0;
+		vrLen = 1866;
+		vrLoc = 9696;
 	};
 	C7F6873A125423660033AC9F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
