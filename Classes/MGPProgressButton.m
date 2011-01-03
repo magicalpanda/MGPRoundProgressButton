@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+//TODO: Make this calculations based on the framesize
 #define kProgressRingPadding 10
 #define kProgressPathStroke 3
 #define kBackgroundRingStroke 1.7
