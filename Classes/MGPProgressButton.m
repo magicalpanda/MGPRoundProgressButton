@@ -319,10 +319,12 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
         self.buttonState = ProgressButtonStatePaused;
     }
 
+#ifdef DEBUG
     if (self.progress == 0 || self.buttonState == ProgressButtonStateRotating) 
     {
         [NSTimer scheduledTimerWithTimeInterval:3. target:self selector:@selector(playbackStarted) userInfo:nil repeats:NO];
     }
+#endif
 }
 
 - (void) playbackStarted
@@ -381,6 +383,10 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     {
         self.progressRing.path = nil;
         [self.progressRing removeAllAnimations];
+    }
+    if (mode == ProgressButtonStatePlaying) 
+    {
+        [self playbackStarted];
     }
 
     currentState_ = mode;
