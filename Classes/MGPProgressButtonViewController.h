@@ -18,6 +18,9 @@
 @property (nonatomic, retain) IBOutlet MGPProgressButton *progressButton;
 
 - (IBAction) startProgress;
+- (IBAction) rotatingState;
+- (IBAction) pauseState;
+- (IBAction) playingState;
 
 @end
 

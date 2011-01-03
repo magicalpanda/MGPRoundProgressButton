@@ -16,6 +16,8 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* MGPProgressButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* MGPProgressButtonViewController.m */; };
 		C777CF791209B49500D109CB /* MGPProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C777CF781209B49500D109CB /* MGPProgressButton.m */; };
+		C777D80F120E8AE900D109CB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C777D80E120E8AE900D109CB /* QuartzCore.framework */; };
+		C7FA0A88126BD505008E596C /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FA0A87126BD505008E596C /* Default-Portrait.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		8D1107310486CEB800E47090 /* MGPProgressButton-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MGPProgressButton-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C777CF771209B49500D109CB /* MGPProgressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGPProgressButton.h; sourceTree = "<group>"; };
 		C777CF781209B49500D109CB /* MGPProgressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGPProgressButton.m; sourceTree = "<group>"; };
+		C777D80E120E8AE900D109CB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C7FA0A87126BD505008E596C /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "../../contractwork/doubleencore.com/Projects/graphic.ly/de-graphicly/Resources/Images/Default-Portrait.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +48,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				C777D80F120E8AE900D109CB /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +58,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C7FA0A87126BD505008E596C /* Default-Portrait.png */,
 				C777CF771209B49500D109CB /* MGPProgressButton.h */,
 				C777CF781209B49500D109CB /* MGPProgressButton.m */,
 				1D3623240D0F684500981E51 /* MGPProgressButtonAppDelegate.h */,
@@ -79,6 +85,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				C777D80E120E8AE900D109CB /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* MGPProgressButtonViewController.xib in Resources */,
+				C7FA0A88126BD505008E596C /* Default-Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +201,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MGPProgressButton_Prefix.pch;
 				INFOPLIST_FILE = "MGPProgressButton-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = MGPProgressButton;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};

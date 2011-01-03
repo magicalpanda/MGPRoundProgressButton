@@ -7,21 +7,122 @@
 //
 
 #import "MGPProgressButton.h"
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
+static CGFloat kPlayButtonPadding = 60.;
 
 CGFloat degreesToRadians(CGFloat degrees) 
 {   
     return M_PI * degrees / 180.0;
 }
 
+CGMutablePathRef progressPath(CGRect frame, CGFloat padding, CGFloat progress)
+{
+    CGFloat borderSize = fmin(frame.size.width, frame.size.height);
+    CGFloat radius = borderSize/2 - padding;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGFloat startAngle = - M_PI_2;
+    CGPathAddArc(path, NULL, frame.size.width/2, frame.size.height/2, radius, startAngle, progress * 2 * M_PI + startAngle, NO);
+    return path;
+}
+
+CGMutablePathRef circlePath(CGRect frame, CGFloat padding)
+{
+    CGFloat borderSize = fmin(frame.size.width, frame.size.height);
+    CGFloat radius = borderSize/2 - padding;
+    CGPoint center = CGPointMake(frame.origin.x + frame.size.width/2, frame.origin.y + frame.size.height/2);
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGFloat x = fabs(center.x - radius);
+    CGFloat y = fabs(center.y - radius);
+    CGPathAddEllipseInRect(path, NULL, CGRectMake(x, y, radius * 2, radius * 2));
+    return path;
+}
+
+CGMutablePathRef playButtonPath(CGRect frame)
+{
+//    CGFloat borderSize = fmin(frame.size.width, frame.size.height);
+    
+    CGFloat startX =  frame.origin.x;
+    CGFloat startY =  frame.origin.y;
+    CGFloat buttonHeight = frame.size.height;
+    CGFloat buttonWidth = frame.size.width;
+    
+    CGPoint leftHalf[] = { 
+        CGPointMake(startX, startY),
+        CGPointMake(startX + buttonWidth/2, startY + buttonHeight * 1/4),
+        CGPointMake(startX + buttonWidth/2, startY + buttonHeight * 3/4),
+        CGPointMake(startX, startY + buttonHeight),
+        CGPointMake(startX, startY),        
+    };
+    
+    CGPoint rightHalf[] = {
+        CGPointMake(startX + buttonWidth/2, startY +  buttonHeight * 1/4),
+        CGPointMake(startX + buttonWidth, startY + buttonHeight/2),
+        CGPointMake(startX + buttonWidth/2, startY + buttonHeight * 3/4),
+        CGPointMake(startX + buttonWidth/2, startY + buttonHeight * 1/4),        
+    };
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddLines(path, NULL, leftHalf, 5);
+    CGPathAddLines(path, NULL, rightHalf, 4);
+    
+    return path;
+}
+
+CGMutablePathRef pauseButtonPath(CGRect frame)
+{
+    CGFloat startX = frame.origin.x;
+    CGFloat startY = frame.origin.y;
+    
+    CGFloat rectHeight = frame.size.height;
+    CGFloat rectWidth = frame.size.width;
+    
+    CGFloat barWidth = rectWidth/3;
+//    CGFloat kerning = frame.size.width/3;
+    
+    CGPoint leftBar[] = {
+        CGPointMake(startX, startY), CGPointMake(startX + barWidth, startY),
+        CGPointMake(startX + barWidth, startY + rectHeight), CGPointMake(startX, startY + rectHeight), 
+        CGPointMake(startX, startY)
+    };
+    CGPoint rightBar[] = {
+        CGPointMake(startX + rectWidth - barWidth, startY), 
+        CGPointMake(startX + rectWidth, startY),
+        CGPointMake(startX + rectWidth, startY + rectHeight),
+        CGPointMake(startX + rectWidth - barWidth, startY + rectHeight),
+        CGPointMake(startX + rectWidth - barWidth, startY)
+    };
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+
+    CGPathAddLines(path, NULL, leftBar, 5);
+    CGPathAddLines(path, NULL, rightBar, 5);
+  
+    return path;
+}
+
 @implementation MGPProgressButton
 
+@synthesize progressMaximum = progressMaximum_;
 @synthesize progress = progress_;
 @synthesize progressColor = progressColor_;
+//@synthesize isPlaying = playMode_;
+@synthesize progressRing = progressRing_;
+@synthesize buttonState = currentState_;
 
-- (CGFloat) radius
+- (void) dealloc
 {
-    CGFloat outerRadius = MIN(self.bounds.size.width, self.bounds.size.height);
-    return (outerRadius - (2 * strokeWidth_)) / 2;
+    [progressMaximum_ release], progressMaximum_ = nil;
+    [backgroundGroup_ release], backgroundGroup_ = nil;
+    [backgroundRing_ release], backgroundRing_ = nil;
+    [background_ release], background_ = nil;
+    [progressRing_ release], progressRing_ = nil;
+    [playPauseButton_ release], playPauseButton_ = nil;
+    [playPauseButtonRing_ release], playPauseButtonRing_ = nil;
+    [super dealloc];
 }
 
 - (CGFloat) radialProgress
@@ -31,16 +132,60 @@ CGFloat degreesToRadians(CGFloat degrees)
 
 - (UIColor *) progressColor
 {
-    return progressColor_ ?: [UIColor colorWithRed:10./255. green:210./255. blue:10./255. alpha:1.];
+    return progressColor_ ?: [UIColor colorWithRed:210./255. green:210./255. blue:210./255. alpha:1.];
 }
 
 - (void) setupView
 {
     self.backgroundColor = [UIColor clearColor];
+    
+    CALayer *mainLayer = self.layer;
+
+    backgroundGroup_ = [[CAShapeLayer layer] retain];
+    backgroundGroup_.frame = self.bounds;
+    
+    background_ = [[CAShapeLayer layer] retain];
+    background_.opacity = .25;
+    background_.fillColor = [UIColor blackColor].CGColor;
+    background_.path = circlePath(self.bounds, 5);
+    [backgroundGroup_ addSublayer:background_];
+
+    backgroundRing_ = [[CAShapeLayer layer] retain];
+    backgroundRing_.frame = self.bounds;
+    backgroundRing_.path = circlePath(self.bounds, 8);
+    backgroundRing_.fillColor = nil;
+    backgroundRing_.lineWidth = 3.5;
+    backgroundRing_.strokeColor = [UIColor whiteColor].CGColor;
+    [backgroundGroup_ addSublayer:backgroundRing_];
+    
+    [mainLayer addSublayer:backgroundGroup_];
+
+    playPauseButton_ = [[CAShapeLayer layer] retain];
+    playPauseButton_.frame = self.bounds;
+    playPauseButton_.masksToBounds = YES;
+    playPauseButton_.path = playButtonPath(CGRectInset(self.bounds, kPlayButtonPadding, kPlayButtonPadding));
+    playPauseButton_.strokeColor = [UIColor whiteColor].CGColor;
+    playPauseButton_.fillColor = [UIColor whiteColor].CGColor;
+    [mainLayer addSublayer:playPauseButton_];
+    
+    playPauseButtonRing_ = [[CAShapeLayer layer] retain];
+    playPauseButtonRing_.frame = self.bounds;
+    playPauseButtonRing_.masksToBounds = YES;
+    playPauseButtonRing_.path = circlePath(self.bounds, 10);
+    playPauseButtonRing_.fillColor = nil;
+    playPauseButtonRing_.strokeColor = [UIColor whiteColor].CGColor;
+    playPauseButtonRing_.lineWidth = 5.;
+    [mainLayer addSublayer:playPauseButtonRing_];
+
+    mainLayer.backgroundColor = [UIColor clearColor].CGColor;
+//    mainLayer.borderColor = [UIColor redColor].CGColor;
+//    mainLayer.borderWidth = 2.0;
+    
     progress_ = 0;
     strokeWidth_ = 10.;
-    playing_ = NO;
-    [self addTarget:self action:@selector(playPause) forControlEvents:UIControlEventTouchUpInside];    
+    self.buttonState = ProgressButtonStatePaused;
+    
+    [self addTarget:self action:@selector(beginLoading) forControlEvents:UIControlEventTouchUpInside];    
 }
 
 - (id) initWithFrame:(CGRect)frame
@@ -61,109 +206,176 @@ CGFloat degreesToRadians(CGFloat degrees)
     return self;
 }
 
-- (void) setProgress:(CGFloat)p
+- (NSNumber *) progressMaximum
 {
-    if (0 <= p && p <= 1) 
+    if (progressMaximum_ == nil) 
     {
-        progress_ = p;
-        [self setNeedsDisplay];
+        self.progressMaximum = [NSNumber numberWithInt:1];
+    }
+    return progressMaximum_;
+}
+
+- (void) setProgress:(CGFloat)progress
+{
+    if (0 < progress) 
+    {
+        if (progress < [self.progressMaximum doubleValue]) 
+        {
+            self.buttonState = ProgressButtonStatePlaying;
+            progress_ = progress;
+            self.progressRing.path = progressPath(self.bounds, 19, progress_ / [self.progressMaximum doubleValue]);
+            [self.progressRing setNeedsDisplay];
+        }
+        else //reached mac progress
+        {
+            [self setButtonState:ProgressButtonStatePaused];
+//            [self setIsPlaying:NO];
+            [self resetProgress];
+        }
+    }
+    else if (progress == 0)
+    {
+        progress_ = 0;
     }
 }
 
-- (void) drawPlayButton:(CGPoint)center inContext:(CGContextRef)context
+- (CAShapeLayer *) progressRing
 {
-    CGContextBeginPath(context);
-    CGContextSaveGState(context);
-    CGContextSetShadow(context, CGSizeMake(0, 1), .5);
-    
-    CGContextMoveToPoint(context, center.x - 10, center.y + 12);
-    CGContextAddLineToPoint(context, center.x + 15, center.y);
-    CGContextAddLineToPoint(context, center.x - 10, center.y - 12);
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextFillPath(context);
-    
-    CGContextRestoreGState(context);
-    CGContextClosePath(context);
-}
-
-- (void) drawPauseButton:(CGPoint)center inContext:(CGContextRef)context
-{
-    CGContextBeginPath(context);
-    CGContextSaveGState(context);
-    CGContextSetShadow(context, CGSizeMake(0, 1), .5);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextSetLineWidth(context, 8);
-    CGPoint leftBar[2] = {
-        CGPointMake(center.x - 6, center.y - 15), CGPointMake(center.x - 6, center.y + 15)
-    };
-    CGContextAddLines(context, leftBar, 2);
-    CGContextStrokePath(context);
-    
-    CGPoint rightBar[2] = {
-        CGPointMake(center.x + 6, center.y - 15), CGPointMake(center.x + 6, center.y + 15)
-    };
-    CGContextAddLines(context, rightBar, 2);
-    CGContextStrokePath(context);
-
-    CGContextRestoreGState(context);
-    CGContextClosePath(context);    
-}
-
-- (void) drawRadialProgress:(CGPoint)center inContext:(CGContextRef)context
-{
-    if (progress_ > 0) 
+    if (progressRing_ == nil) 
     {
-        CGContextBeginPath(context);
-
-        CGFloat progressRadius = [self radius] - strokeWidth_/2;
-        
-        CGContextSetStrokeColorWithColor(context, self.progressColor.CGColor);
-        CGContextSetLineWidth(context, strokeWidth_);
-        CGFloat progress = self.progress * 2 * M_PI;
-        CGFloat startOffset = degreesToRadians(-90);
-        CGContextAddArc(context, center.x, center.y, progressRadius, startOffset, startOffset + progress, NO);
-        CGContextStrokePath(context);
-        
-        CGContextClosePath(context);
-    }    
+        progressRing_ = [[CAShapeLayer layer] retain];
+        progressRing_.opacity = .75;
+        progressRing_.frame = backgroundGroup_.bounds;
+        progressRing_.fillColor = nil;
+        progressRing_.strokeColor = self.progressColor.CGColor;
+        progressRing_.lineWidth = 12.;
+        [backgroundGroup_ addSublayer:progressRing_];
+    }
+    return progressRing_;
 }
 
-- (void) drawRect:(CGRect)rect
+- (void) resetProgress
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetAllowsAntialiasing(context, YES);
-
-    CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    
-    CGContextBeginPath(context);
-    CGContextSetGrayStrokeColor(context, .5, .5);
-
-    CGContextSetLineWidth(context, 1.);
-    CGContextAddArc(context, center.x, center.y, 23., 0, 2 * M_PI, YES);
-    
-    CGContextStrokePath(context);
-
-//    size_t num_locations = 2;
-//    CGFloat locations[2] = { 0.0, 1.0 };
-//    CGFloat components[8] = { 1.0, 1.0, 1.0, 0.0,  // Start color
-//        1.0, 1.0, 1.0, 0.5 }; // End color
-//    CGColorSpaceRef rgbColorspace = CGColorSpaceCreateDeviceRGB();
-//    CGGradientRef glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
-//    
-//    CGContextDrawRadialGradient(context, glossGradient, center, [self radius], center, [self radius] - strokeWidth_, kCGGradientDrawsAfterEndLocation);
-    
-    [self drawRadialProgress:center inContext:context];
-    
-    playing_ ? [self drawPlayButton:center inContext:context] : [self drawPauseButton:center inContext:context];
+    [self setProgress:0];
 }
 
-- (IBAction) playPause;
+- (void) rotateFirstHalf
 {
-    playing_ = !playing_;
-    [self setNeedsDisplay];
+    [self.progressRing removeAllAnimations];
+    CABasicAnimation *rotate = [CABasicAnimation animationWithKeyPath:@"transform"];
+    
+    CATransform3D startRotation = CATransform3DMakeRotation(0, 0, 0, 1.);
+    CATransform3D endRotation = CATransform3DMakeRotation(degreesToRadians(180.), 0, 0, 1.);
+    
+    rotate.fromValue = [NSValue valueWithCATransform3D:startRotation];
+    rotate.toValue = [NSValue valueWithCATransform3D:endRotation];
+    rotate.delegate = self;
+    rotate.duration = 1.;
+    
+    [self.progressRing addAnimation:rotate forKey:@"firstHalf"];    
+}
+
+- (void) rotateSecondHalf
+{
+    [self.progressRing removeAllAnimations];
+    CABasicAnimation *rotate = [CABasicAnimation animationWithKeyPath:@"transform"];
+    
+    CATransform3D startRotation = CATransform3DMakeRotation(degreesToRadians(180.), 0, 0, 1.);
+    CATransform3D endRotation = CATransform3DMakeRotation(degreesToRadians(360.), 0, 0, 1.);
+    
+    rotate.fromValue = [NSValue valueWithCATransform3D:startRotation];
+    rotate.toValue = [NSValue valueWithCATransform3D:endRotation];
+    rotate.duration = 1.;
+    rotate.delegate = self;
+    
+    [self.progressRing addAnimation:rotate forKey:@"secondHalf"];
+}
+
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)finished
+{
+    if (!finished) return;
+
+    spinCount_++ % 2 ? [self rotateFirstHalf] : [self rotateSecondHalf];
+}
+
+- (IBAction) beginLoading;
+{
+    if (self.buttonState == ProgressButtonStatePaused) 
+    {
+        [self setButtonState:ProgressButtonStateRotating];
+        self.progressRing.path = progressPath(self.bounds, 19, .3);
+    }
+    else if (self.buttonState == ProgressButtonStatePlaying)
+    {
+        [self setButtonState:ProgressButtonStatePaused];
+    }
+
+    if (self.progress == 0 || self.buttonState == ProgressButtonStateRotating) 
+    {
+        [NSTimer scheduledTimerWithTimeInterval:3. target:self selector:@selector(playbackStarted) userInfo:nil repeats:NO];
+    }
+}
+
+- (void) playbackStarted
+{
+    [self.progressRing removeAllAnimations];
+    spinCount_ = 0;
+    currentState_ = ProgressButtonStatePlaying;
+    
+    self.progressRing.path = progressPath(self.bounds, 19, 0);
+    self.progressRing.transform = CATransform3DIdentity;
+}
+
+- (void) setButtonState:(ProgressButtonState)mode
+//- (void) setIsPlaying:(BOOL)mode
+{
+    if (mode == self.buttonState) return;
+    
+    [backgroundGroup_ removeAllAnimations];
+    
+    CATransform3D scaleTransform = mode == ProgressButtonStatePaused ? 
+            CATransform3DIdentity :
+            CATransform3DIsIdentity(backgroundGroup_.transform) ? CATransform3DScale(backgroundGroup_.transform, 1.3, 1.3, 1) : backgroundGroup_.transform;
+
+    backgroundGroup_.transform = scaleTransform;
+    
+    [backgroundGroup_ setNeedsDisplay];
+    
+    CGRect buttonFrame = CGRectInset(self.bounds, kPlayButtonPadding, kPlayButtonPadding);
+    
+    BOOL fromPlayButton = self.buttonState == ProgressButtonStatePaused;
+    BOOL toPlayButton = mode != ProgressButtonStatePlaying && mode != ProgressButtonStateRotating;
+    
+    if (fromPlayButton != toPlayButton) 
+    {
+        CGMutablePathRef fromPath = fromPlayButton ? playButtonPath(buttonFrame) : pauseButtonPath(buttonFrame);
+        CGMutablePathRef toPath = toPlayButton ? playButtonPath(buttonFrame) : pauseButtonPath(buttonFrame);
+        
+        [playPauseButton_ setPath:toPath];
+        
+        [playPauseButton_ removeAllAnimations];
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
+        animation.toValue = (id)toPath;
+        animation.fromValue = (id)fromPath;
+        animation.fillMode = kCAFillModeForwards;
+        animation.removedOnCompletion =  NO;
+        
+        [playPauseButton_ addAnimation:animation forKey:@"playControlToggle"];
+    }
+    
+    if (mode == ProgressButtonStateRotating && self.progress == 0)  
+    {
+        spinCount_ = 0;
+        self.progressRing.path = progressPath(self.bounds, 19, .3);
+        [self rotateFirstHalf];
+    }
+    else 
+    {
+        self.progressRing.path = nil;
+        [self.progressRing removeAllAnimations];
+    }
+
+    currentState_ = mode;
 }
 
 @end

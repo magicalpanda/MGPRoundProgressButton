@@ -7,17 +7,39 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
+typedef enum {
+    ProgressButtonStatePaused    = 1 << 0,
+    ProgressButtonStatePlaying   = 1 << 1,
+    ProgressButtonStateRotating  = 1 << 2
+} ProgressButtonState;
 
 @interface MGPProgressButton : UIControl {
+@private
+
+    CAShapeLayer *backgroundGroup_;
+    CAShapeLayer *background_;
+    CAShapeLayer *backgroundRing_;    
+    CAShapeLayer *playPauseButton_;
+    CAShapeLayer *playPauseButtonRing_;
+    
     CGFloat progress_;
     CGFloat strokeWidth_;
-    BOOL playing_;
+    ProgressButtonState currentState_;
+
+    NSUInteger spinCount_;
 }
 
+@property (nonatomic, retain) NSNumber *progressMaximum;
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, retain) UIColor *progressColor;
+//@property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, assign) ProgressButtonState buttonState;
+@property (nonatomic, readonly) CAShapeLayer *progressRing;
 
-- (IBAction) playPause;
+- (IBAction) beginLoading;
+- (IBAction) resetProgress;
+//- (void) setIsPlaying:(BOOL)playing animated:(BOOL)animated;
 
 @end
