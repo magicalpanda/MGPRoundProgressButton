@@ -38,8 +38,8 @@ CGMutablePathRef progressPath(CGRect frame, CGFloat padding, CGFloat progress)
     
     CGMutablePathRef path = CGPathCreateMutable();
     CGFloat startAngle = - M_PI_2;
-    CGPathAddArc(path, NULL, frame.size.width/2, frame.size.height/2, radius, startAngle, progress * 2 * M_PI + startAngle, NO);
-    return path;
+    CGPathAddArc(path, NULL, frame.size.width/2, frame.size.height/2, radius, startAngle, progress * 2 * M_PI + startAngle, YES);
+    return (CGMutablePathRef)[NSMakeCollectable(path) autorelease];
 }
 
 CGMutablePathRef circlePath(CGRect frame, CGFloat padding)
@@ -52,7 +52,7 @@ CGMutablePathRef circlePath(CGRect frame, CGFloat padding)
     CGFloat x = fabs(center.x - radius);
     CGFloat y = fabs(center.y - radius);
     CGPathAddEllipseInRect(path, NULL, CGRectMake(x, y, radius * 2, radius * 2));
-    return path;
+    return (CGMutablePathRef)[NSMakeCollectable(path) autorelease];
 }
 
 CGMutablePathRef playButtonPath(CGRect frame)
@@ -83,7 +83,7 @@ CGMutablePathRef playButtonPath(CGRect frame)
     CGPathAddLines(path, NULL, leftHalf, 5);
     CGPathAddLines(path, NULL, rightHalf, 4);
     
-    return path;
+    return (CGMutablePathRef)[NSMakeCollectable(path) autorelease];
 }
 
 CGMutablePathRef pauseButtonPath(CGRect frame)
@@ -115,7 +115,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     CGPathAddLines(path, NULL, leftBar, 5);
     CGPathAddLines(path, NULL, rightBar, 5);
   
-    return path;
+    return (CGMutablePathRef)[NSMakeCollectable(path) autorelease];
 }
 
 @implementation MGPProgressButton
@@ -200,7 +200,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 
 - (id) initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithFrame:frame]) 
+    if ((self = [super initWithFrame:frame]))
     {
         [self setupView];
     }
@@ -209,7 +209,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 
 - (id) initWithCoder:(NSCoder *)aDecoder
 {
-    if (self = [super initWithCoder:aDecoder])
+    if ((self = [super initWithCoder:aDecoder]))
     {
         [self setupView];
     }
@@ -229,11 +229,12 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 {
     if (0 < progress) 
     {
-        if (progress < [self.progressMaximum doubleValue]) 
+        CGFloat max = [self.progressMaximum floatValue];
+        if (progress < max) 
         {
             self.buttonState = ProgressButtonStatePlaying;
             progress_ = progress;
-            self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, progress_ / [self.progressMaximum doubleValue]);
+            self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, progress_ / max);
             [self.progressRing setNeedsDisplay];
         }
         else //reached mac progress
@@ -249,6 +250,11 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     }
 }
 
+- (void) setProgress:(CGFloat)progress animated:(BOOL)animated
+{
+    
+}
+
 - (CAShapeLayer *) progressRing
 {
     if (progressRing_ == nil) 
@@ -257,7 +263,6 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
         progressRing_.opacity = .75;
         progressRing_.frame = backgroundGroup_.bounds;
         progressRing_.fillColor = nil;
-        progressRing_.strokeColor = self.progressColor.CGColor;
         progressRing_.lineWidth = kProgressPathStroke;
         [backgroundGroup_ addSublayer:progressRing_];
     }
@@ -318,7 +323,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     {
         self.buttonState = ProgressButtonStatePaused;
     }
-
+    self.progressRing.strokeColor = self.progressColor.CGColor;
 #ifdef DEBUG
     if (self.progress == 0 || self.buttonState == ProgressButtonStateRotating) 
     {
@@ -336,13 +341,18 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     self.progressRing.transform = CATransform3DIdentity;
 }
 
-- (void) setButtonState:(ProgressButtonState)mode
+- (void) setButtonState:(ProgressButtonState)newState
 {
-    if (mode == self.buttonState) return;
+    [self setButtonState:newState animated:NO];
+}
+
+- (void) setButtonState:(ProgressButtonState)newState animated:(BOOL)animated;
+{
+    if (newState == self.buttonState) return;
     
     [backgroundGroup_ removeAllAnimations];
     
-    CATransform3D scaleTransform = mode == ProgressButtonStatePaused ? 
+    CATransform3D scaleTransform = newState == ProgressButtonStatePaused ? 
             CATransform3DIdentity :
             CATransform3DIsIdentity(backgroundGroup_.transform) ? CATransform3DScale(backgroundGroup_.transform, 1.3, 1.3, 1) : backgroundGroup_.transform;
 
@@ -353,7 +363,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     CGRect buttonFrame = CGRectInset(self.bounds, kPlayButtonPadding, kPlayButtonPadding);
     
     BOOL fromPlayButton = self.buttonState == ProgressButtonStatePaused;
-    BOOL toPlayButton = mode != ProgressButtonStatePlaying && mode != ProgressButtonStateRotating;
+    BOOL toPlayButton = newState != ProgressButtonStatePlaying && newState != ProgressButtonStateRotating;
     
     if (fromPlayButton != toPlayButton) 
     {
@@ -361,18 +371,24 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
         CGMutablePathRef toPath = toPlayButton ? playButtonPath(buttonFrame) : pauseButtonPath(buttonFrame);
         
         [playPauseButton_ setPath:toPath];
-        
-        [playPauseButton_ removeAllAnimations];
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
-        animation.toValue = (id)toPath;
-        animation.fromValue = (id)fromPath;
-        animation.fillMode = kCAFillModeForwards;
-        animation.removedOnCompletion =  NO;
-        
-        [playPauseButton_ addAnimation:animation forKey:@"playControlToggle"];
+        if (animated) 
+        {
+            [playPauseButton_ removeAllAnimations];
+            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
+            animation.toValue = (id)toPath;
+            animation.fromValue = (id)fromPath;
+            animation.fillMode = kCAFillModeForwards;
+            animation.removedOnCompletion =  NO;
+     
+            [playPauseButton_ addAnimation:animation forKey:@"playControlToggle"];
+        }
+//        else 
+//        {
+//            
+//        }
     }
     
-    if (mode == ProgressButtonStateRotating && self.progress == 0)  
+    if (newState == ProgressButtonStateRotating && self.progress == 0)  
     {
         spinCount_ = 0;
         self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, .3);
@@ -383,12 +399,12 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
         self.progressRing.path = nil;
         [self.progressRing removeAllAnimations];
     }
-    if (mode == ProgressButtonStatePlaying) 
+    if (newState == ProgressButtonStatePlaying) 
     {
         [self playbackStarted];
     }
 
-    currentState_ = mode;
+    currentState_ = newState;
 }
 
 @end

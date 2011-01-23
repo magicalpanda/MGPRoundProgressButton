@@ -24,6 +24,7 @@ typedef enum {
     CAShapeLayer *playPauseButton_;
     CAShapeLayer *playPauseButtonRing_;
     
+    UIColor *progressColor_;
     CGFloat progress_;
 //    CGFloat strokeWidth_;
     ProgressButtonState currentState_;
@@ -39,5 +40,8 @@ typedef enum {
 
 - (IBAction) beginLoading;
 - (IBAction) resetProgress;
+
+- (void) setButtonState:(ProgressButtonState)newState animated:(BOOL)animated;
+- (void) setProgress:(CGFloat)progress animated:(BOOL)animated;
 
 @end
