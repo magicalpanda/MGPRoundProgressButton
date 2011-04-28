@@ -23,7 +23,7 @@
 #define kPlayControlRingStroke 1.8
 #define kPlayButtonPadding 17.5
 
-#define kProgressRingSpinTimeInterval 1.
+#define kProgressRingSpinTimeInterval .65
 
 
 CGFloat degreesToRadians(CGFloat degrees) 
@@ -118,7 +118,24 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     return (CGMutablePathRef)[NSMakeCollectable(path) autorelease];
 }
 
+@interface MGPProgressButton ()
+
+@property (nonatomic, retain) CAShapeLayer *background;
+@property (nonatomic, retain) CAShapeLayer *backgroundGroup;
+@property (nonatomic, retain) CAShapeLayer *backgroundRing;
+@property (nonatomic, retain) CAShapeLayer *playPauseButton;
+@property (nonatomic, retain) CAShapeLayer *playPauseButtonRing;
+@property (nonatomic, retain) CAShapeLayer *progressRing;
+
+@end
+
 @implementation MGPProgressButton
+
+@synthesize background = background_;
+@synthesize backgroundGroup = backgroundGroup_;
+@synthesize backgroundRing = backgroundRing_;
+@synthesize playPauseButton = playPauseButton_;
+@synthesize playPauseButtonRing = playPauseButtonRing_;
 
 @synthesize progressMaximum = progressMaximum_;
 @synthesize progress = progress_;
@@ -128,13 +145,13 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 
 - (void) dealloc
 {
-    [progressMaximum_ release], progressMaximum_ = nil;
-    [backgroundGroup_ release], backgroundGroup_ = nil;
-    [backgroundRing_ release], backgroundRing_ = nil;
-    [background_ release], background_ = nil;
-    [progressRing_ release], progressRing_ = nil;
-    [playPauseButton_ release], playPauseButton_ = nil;
-    [playPauseButtonRing_ release], playPauseButtonRing_ = nil;
+    self.background = nil;
+    self.backgroundGroup = nil;
+    self.backgroundRing = nil;
+    self.playPauseButton = nil;
+    self.playPauseButtonRing = nil;
+    
+    self.progressMaximum = nil;
     [super dealloc];
 }
 
@@ -148,54 +165,92 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     return progressColor_ ?: [UIColor colorWithRed:210./255. green:210./255. blue:210./255. alpha:1.];
 }
 
+- (CAShapeLayer *) createBackgroundRing
+{
+    CAShapeLayer *backgroundRing = [CAShapeLayer layer];
+    backgroundRing.frame = self.bounds;
+    backgroundRing.path = circlePath(self.bounds, kBackgroundRingPadding);
+    backgroundRing.fillColor = nil;
+    backgroundRing.lineWidth = kBackgroundRingStroke;
+    backgroundRing.strokeColor = [UIColor whiteColor].CGColor;
+    return backgroundRing;
+}
+
+- (CAShapeLayer *) createBackground
+{
+    CAShapeLayer *background = [CAShapeLayer layer];
+    background.opacity = .25;
+    background.fillColor = [UIColor blackColor].CGColor;
+    background.path = circlePath(self.bounds, kBackgroundGroupPadding);
+    
+//    background.actions = [NSDictionary dictionaryWithObject:[CABasicAnimation animationWithKeyPath:@"transform" forKey:<#(id)#>
+    return background;
+}
+
+- (CAShapeLayer *) createPlayPauseButton
+{
+    CAShapeLayer *playPauseButton = [CAShapeLayer layer];
+    playPauseButton.frame = self.bounds;
+    playPauseButton.masksToBounds = YES;
+    playPauseButton.path = playButtonPath(CGRectInset(self.bounds, kPlayButtonPadding, kPlayButtonPadding));
+    playPauseButton.strokeColor = [UIColor whiteColor].CGColor;
+    playPauseButton.fillColor = [UIColor whiteColor].CGColor;
+    return playPauseButton;
+}
+
+- (CAShapeLayer *) createPlayPauseButtonRing
+{
+    CAShapeLayer *ring = [CAShapeLayer layer];
+    ring = [CAShapeLayer layer];
+    ring.frame = self.bounds;
+    ring.masksToBounds = YES;
+    ring.path = circlePath(self.bounds, kPlayControlRingPadding);
+    ring.fillColor = nil;
+    ring.strokeColor = [UIColor whiteColor].CGColor;
+    ring.lineWidth = kPlayControlRingStroke;   
+    return ring;
+}
+
+- (CAShapeLayer *) createProgressRing
+{
+    CAShapeLayer *ring = [[CAShapeLayer layer] retain];
+    ring.opacity = .75;
+    ring.frame = self.backgroundGroup.bounds;
+    ring.fillColor = nil;
+    ring.lineWidth = kProgressPathStroke;
+
+    return ring;
+}
+
 - (void) setupView
 {
     self.backgroundColor = [UIColor clearColor];
     
     CALayer *mainLayer = self.layer;
-
-    backgroundGroup_ = [[CAShapeLayer layer] retain];
-    backgroundGroup_.frame = self.bounds;
-    
-    background_ = [[CAShapeLayer layer] retain];
-    background_.opacity = .25;
-    background_.fillColor = [UIColor blackColor].CGColor;
-    background_.path = circlePath(self.bounds, kBackgroundGroupPadding);
-    [backgroundGroup_ addSublayer:background_];
-
-    backgroundRing_ = [[CAShapeLayer layer] retain];
-    backgroundRing_.frame = self.bounds;
-    backgroundRing_.path = circlePath(self.bounds, kBackgroundRingPadding);
-    backgroundRing_.fillColor = nil;
-    backgroundRing_.lineWidth = kBackgroundRingStroke;
-    backgroundRing_.strokeColor = [UIColor whiteColor].CGColor;
-    [backgroundGroup_ addSublayer:backgroundRing_];
-    
-    [mainLayer addSublayer:backgroundGroup_];
-
-    playPauseButton_ = [[CAShapeLayer layer] retain];
-    playPauseButton_.frame = self.bounds;
-    playPauseButton_.masksToBounds = YES;
-    playPauseButton_.path = playButtonPath(CGRectInset(self.bounds, kPlayButtonPadding, kPlayButtonPadding));
-    playPauseButton_.strokeColor = [UIColor whiteColor].CGColor;
-    playPauseButton_.fillColor = [UIColor whiteColor].CGColor;
-    [mainLayer addSublayer:playPauseButton_];
-    
-    playPauseButtonRing_ = [[CAShapeLayer layer] retain];
-    playPauseButtonRing_.frame = self.bounds;
-    playPauseButtonRing_.masksToBounds = YES;
-    playPauseButtonRing_.path = circlePath(self.bounds, kPlayControlRingPadding);
-    playPauseButtonRing_.fillColor = nil;
-    playPauseButtonRing_.strokeColor = [UIColor whiteColor].CGColor;
-    playPauseButtonRing_.lineWidth = kPlayControlRingStroke;
-    [mainLayer addSublayer:playPauseButtonRing_];
-
     mainLayer.backgroundColor = [UIColor clearColor].CGColor;
+
+    self.backgroundGroup = [CAShapeLayer layer];
+    self.backgroundGroup.frame = self.bounds;
+    
+    self.background = [self createBackground];
+    [self.backgroundGroup addSublayer:self.background];
+
+    self.backgroundRing = [self createBackgroundRing];
+    [self.backgroundGroup addSublayer:self.backgroundRing];
+    
+    [mainLayer addSublayer:self.backgroundGroup];
+
+    self.playPauseButton = [self createPlayPauseButton];
+    [mainLayer addSublayer:self.playPauseButton];
+    
+    self.playPauseButtonRing = [self createPlayPauseButtonRing];
+    [mainLayer addSublayer:self.playPauseButtonRing];
     
     progress_ = 0;
+    progressMaximum_ = nil;
     self.buttonState = ProgressButtonStatePaused;
     
-    [self addTarget:self action:@selector(beginLoading) forControlEvents:UIControlEventTouchUpInside];    
+    [self addTarget:self action:@selector(handleTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];    
 }
 
 - (id) initWithFrame:(CGRect)frame
@@ -237,7 +292,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
             self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, progress_ / max);
             [self.progressRing setNeedsDisplay];
         }
-        else //reached mac progress
+        else //reached max progress
         {
             [self setButtonState:ProgressButtonStatePaused];
 //            [self setIsPlaying:NO];
@@ -252,21 +307,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 
 - (void) setProgress:(CGFloat)progress animated:(BOOL)animated
 {
-    
-}
-
-- (CAShapeLayer *) progressRing
-{
-    if (progressRing_ == nil) 
-    {
-        progressRing_ = [[CAShapeLayer layer] retain];
-        progressRing_.opacity = .75;
-        progressRing_.frame = backgroundGroup_.bounds;
-        progressRing_.fillColor = nil;
-        progressRing_.lineWidth = kProgressPathStroke;
-        [backgroundGroup_ addSublayer:progressRing_];
-    }
-    return progressRing_;
+    [self setProgress:progress];
 }
 
 - (void) resetProgress
@@ -274,46 +315,37 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
     [self setProgress:0];
 }
 
-- (void) rotateFirstHalf
+- (void) beginRotatingShape:(CALayer *)shape
 {
-    [self.progressRing removeAllAnimations];
-    CABasicAnimation *rotate = [CABasicAnimation animationWithKeyPath:@"transform"];
+    [shape removeAllAnimations];
+    CAKeyframeAnimation *rotate = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
+
+    rotate.values = [NSArray arrayWithObjects:
+                    [NSNumber numberWithFloat:0 * M_PI], 
+                     [NSNumber numberWithFloat:.5 * M_PI],
+                     [NSNumber numberWithFloat:1 * M_PI],
+                     nil];
     
-    CATransform3D startRotation = CATransform3DMakeRotation(0, 0, 0, 1.);
-    CATransform3D endRotation = CATransform3DMakeRotation(degreesToRadians(180.), 0, 0, 1.);
+    [rotate setKeyTimes:[NSArray arrayWithObjects:
+                         [NSNumber numberWithFloat:0], 
+                         [NSNumber numberWithFloat:.5],
+                         [NSNumber numberWithFloat:1], nil]];
+    rotate.timingFunctions = [NSArray arrayWithObjects:
+                                 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],        // from keyframe 1 to keyframe 2
+                                 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear
+                                  ], nil]; // from keyframe 2 to keyframe 3
+    rotate.removedOnCompletion = NO;
+    rotate.fillMode = kCAFillModeForwards;
+    rotate.cumulative = YES;
+    rotate.repeatCount = INT_MAX;
+
+    rotate.duration = kProgressRingSpinTimeInterval;
     
-    rotate.fromValue = [NSValue valueWithCATransform3D:startRotation];
-    rotate.toValue = [NSValue valueWithCATransform3D:endRotation];
-    rotate.delegate = self;
-    rotate.duration = kProgressRingSpinTimeInterval / 2;
-    
-    [self.progressRing addAnimation:rotate forKey:@"firstHalf"];    
+    [shape addAnimation:rotate forKey:@"rotate"];    
 }
 
-- (void) rotateSecondHalf
-{
-    [self.progressRing removeAllAnimations];
-    CABasicAnimation *rotate = [CABasicAnimation animationWithKeyPath:@"transform"];
-    
-    CATransform3D startRotation = CATransform3DMakeRotation(degreesToRadians(180.), 0, 0, 1.);
-    CATransform3D endRotation = CATransform3DMakeRotation(degreesToRadians(360.), 0, 0, 1.);
-    
-    rotate.fromValue = [NSValue valueWithCATransform3D:startRotation];
-    rotate.toValue = [NSValue valueWithCATransform3D:endRotation];
-    rotate.duration = kProgressRingSpinTimeInterval / 2;
-    rotate.delegate = self;
-    
-    [self.progressRing addAnimation:rotate forKey:@"secondHalf"];
-}
 
-- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)finished
-{
-    if (!finished) return;
-
-    spinCount_++ % 2 ? [self rotateFirstHalf] : [self rotateSecondHalf];
-}
-
-- (IBAction) beginLoading;
+- (IBAction) handleTouchUpInside:(id)sender;
 {
     if (self.buttonState == ProgressButtonStatePaused) 
     {
@@ -324,6 +356,7 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
         self.buttonState = ProgressButtonStatePaused;
     }
     self.progressRing.strokeColor = self.progressColor.CGColor;
+    
 #ifdef DEBUG
     if (self.progress == 0 || self.buttonState == ProgressButtonStateRotating) 
     {
@@ -332,13 +365,101 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 #endif
 }
 
-- (void) playbackStarted
+- (void) cancelCurrentAnimations
 {
+    [self.backgroundGroup removeAllAnimations];
+    [self.backgroundRing removeAllAnimations];
     [self.progressRing removeAllAnimations];
-    currentState_ = ProgressButtonStatePlaying;
+    [self.playPauseButton removeAllAnimations];
+    [self.playPauseButtonRing removeAllAnimations];
+}
+
+- (void) transitionToRotatingStateAnimated:(BOOL)animated
+{
+    //disable other animations...
+    [self cancelCurrentAnimations];
     
+    // make play button into pause
+    
+    //make background larger
+    CGFloat scale = 1.3;
+    CATransform3D startingTransform = self.backgroundGroup.transform;
+    CATransform3D scaleTransform = CATransform3DIsIdentity(startingTransform) ? 
+                CATransform3DScale(startingTransform, scale, scale, 1) :
+                startingTransform;
+
+    self.backgroundGroup.transform = scaleTransform;
+    
+    //make progress ring spin
+    if (self.progressRing == nil)
+    {
+        self.progressRing = [self createProgressRing];
+        [self.backgroundGroup addSublayer:self.progressRing];
+    }
+    
+    self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, 1 - .3);
+    self.progressRing.strokeColor = self.progressColor.CGColor;
+                            
+    [self beginRotatingShape:self.progressRing];
+}
+
+- (void) animate:(CAShapeLayer *)layer fromShape:(CGPathRef)fromPath toShape:(CGPathRef)toPath
+{
+    [layer setPath:toPath];
+    [layer removeAllAnimations];
+
+
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
+    animation.toValue = (id)toPath;
+    if (!CGPathEqualToPath(toPath, fromPath))
+    {
+        animation.fromValue = (id)fromPath;
+    }
+    animation.fillMode = kCAFillModeForwards;
+    animation.removedOnCompletion =  NO;
+    
+    [layer addAnimation:animation forKey:@"playControlToggle"];
+}
+
+- (void) transitionToPlayingStateAnimated:(BOOL)animated
+{
+    [self cancelCurrentAnimations];
+    
+    //make progress ring small
     self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, 0);
     self.progressRing.transform = CATransform3DIdentity;
+
+    CGFloat scale = 1.3;
+    CATransform3D startingTransform = self.backgroundGroup.transform;
+
+    CATransform3D scaleTransform = CATransform3DIsIdentity(startingTransform) ?  CATransform3DScale(startingTransform, scale, scale, 1) : startingTransform;
+    
+    self.backgroundGroup.transform = scaleTransform;
+
+    
+    //transition to pause button
+    CGRect buttonFrame = CGRectInset(self.bounds, kPlayButtonPadding, kPlayButtonPadding);
+    
+    CGMutablePathRef fromPath = playButtonPath(buttonFrame);
+    CGMutablePathRef toPath = pauseButtonPath(buttonFrame);
+    
+    [self animate:self.playPauseButton fromShape:fromPath toShape:toPath];
+}
+
+- (void) transitionToPausedStateAnimated:(BOOL)animated
+{
+    //make progress ring small
+    self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, 0);
+    self.progressRing.transform = CATransform3DIdentity;
+    self.backgroundGroup.transform = CATransform3DIdentity;
+ 
+    //transition to play button
+    CGRect buttonFrame = CGRectInset(self.bounds, kPlayButtonPadding, kPlayButtonPadding);
+    
+    CGMutablePathRef toPath = playButtonPath(buttonFrame);
+    CGMutablePathRef fromPath = pauseButtonPath(buttonFrame);
+    
+    [self animate:self.playPauseButton fromShape:fromPath toShape:toPath];
 }
 
 - (void) setButtonState:(ProgressButtonState)newState
@@ -350,61 +471,33 @@ CGMutablePathRef pauseButtonPath(CGRect frame)
 {
     if (newState == self.buttonState) return;
     
-    [backgroundGroup_ removeAllAnimations];
-    
-    CATransform3D scaleTransform = newState == ProgressButtonStatePaused ? 
-            CATransform3DIdentity :
-            CATransform3DIsIdentity(backgroundGroup_.transform) ? CATransform3DScale(backgroundGroup_.transform, 1.3, 1.3, 1) : backgroundGroup_.transform;
-
-    backgroundGroup_.transform = scaleTransform;
-    
-    [backgroundGroup_ setNeedsDisplay];
-    
-    CGRect buttonFrame = CGRectInset(self.bounds, kPlayButtonPadding, kPlayButtonPadding);
-    
-    BOOL fromPlayButton = self.buttonState == ProgressButtonStatePaused;
-    BOOL toPlayButton = newState != ProgressButtonStatePlaying && newState != ProgressButtonStateRotating;
-    
-    if (fromPlayButton != toPlayButton) 
+    if (newState == ProgressButtonStatePaused)
     {
-        CGMutablePathRef fromPath = fromPlayButton ? playButtonPath(buttonFrame) : pauseButtonPath(buttonFrame);
-        CGMutablePathRef toPath = toPlayButton ? playButtonPath(buttonFrame) : pauseButtonPath(buttonFrame);
-        
-        [playPauseButton_ setPath:toPath];
-        if (animated) 
-        {
-            [playPauseButton_ removeAllAnimations];
-            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
-            animation.toValue = (id)toPath;
-            animation.fromValue = (id)fromPath;
-            animation.fillMode = kCAFillModeForwards;
-            animation.removedOnCompletion =  NO;
-     
-            [playPauseButton_ addAnimation:animation forKey:@"playControlToggle"];
-        }
-//        else 
-//        {
-//            
-//        }
+        [self transitionToPausedStateAnimated:animated];
     }
-    
-    if (newState == ProgressButtonStateRotating && self.progress == 0)  
+    else if (newState == ProgressButtonStatePlaying)
     {
-        spinCount_ = 0;
-        self.progressRing.path = progressPath(self.bounds, kProgressRingPadding, .3);
-        [self rotateFirstHalf];
+        [self transitionToPlayingStateAnimated:animated];
     }
-    else 
+    else if (newState == ProgressButtonStateRotating)
     {
-        self.progressRing.path = nil;
-        [self.progressRing removeAllAnimations];
-    }
-    if (newState == ProgressButtonStatePlaying) 
-    {
-        [self playbackStarted];
+        [self transitionToRotatingStateAnimated:animated];
     }
 
+    [self willChangeValueForKey:@"buttonState"];
     currentState_ = newState;
+    [self didChangeValueForKey:@"buttonState"];
+}
+
+- (ProgressButtonState) nextState:(ProgressButtonState)currentState
+{
+    switch (currentState)
+    {
+        case ProgressButtonStatePaused:     return ProgressButtonStatePlaying;
+        case ProgressButtonStatePlaying:    return ProgressButtonStatePaused;
+        default:
+        case ProgressButtonStateRotating:   return ProgressButtonStateRotating;
+    }
 }
 
 @end

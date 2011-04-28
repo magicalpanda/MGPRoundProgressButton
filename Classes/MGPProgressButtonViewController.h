@@ -12,10 +12,10 @@
 
 @interface MGPProgressButtonViewController : UIViewController {
 
-    NSTimer *_progressTimer;
 }
 
 @property (nonatomic, retain) IBOutlet MGPProgressButton *progressButton;
+@property (nonatomic, retain) IBOutlet UILabel *buttonState;
 
 - (IBAction) startProgress;
 - (IBAction) rotatingState;

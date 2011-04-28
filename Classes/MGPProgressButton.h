@@ -36,9 +36,9 @@ typedef enum {
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, retain) UIColor *progressColor;
 @property (nonatomic, assign) ProgressButtonState buttonState;
-@property (nonatomic, readonly) CAShapeLayer *progressRing;
+@property (nonatomic, retain, readonly) CAShapeLayer *progressRing;
 
-- (IBAction) beginLoading;
+- (IBAction) handleTouchUpInside:(id)sender;
 - (IBAction) resetProgress;
 
 - (void) setButtonState:(ProgressButtonState)newState animated:(BOOL)animated;
